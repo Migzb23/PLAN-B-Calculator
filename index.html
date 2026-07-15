@@ -4,37 +4,102 @@
   <meta charset="UTF-8">
   <title>P.L.A.N. Bonus Calculator</title>
   <style>
-    body { font-family: Arial; margin: 40px; background: #f9f9f9; }
-    h2 { color: #333; }
-    label { display: block; margin-top: 10px; }
-    input, select { padding: 5px; margin-top: 5px; width: 200px; }
-    button { margin-top: 20px; padding: 10px 20px; }
-    .result { margin-top: 20px; font-weight: bold; }
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #fff0f5;
+      margin: 40px;
+      color: #333;
+    }
+    h2 {
+      color: #ff69b4;
+      text-align: center;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    label {
+      flex: 1;
+    }
+    input[type="number"] {
+      flex: 1;
+      padding: 8px;
+      border: 2px solid #ffb6c1;
+      border-radius: 8px;
+    }
+    .checkboxes {
+      display: flex;
+      flex-direction: column;
+      margin-left: 20px;
+    }
+    .checkboxes label {
+      margin: 5px 0;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #ff85c1;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+      color: #d63384;
+    }
   </style>
 </head>
 <body>
-  <h2>P.L.A.N. Bonus Calculator</h2>
+  <div class="container">
+    <h2>🎀 P.L.A.N. Bonus Calculator 🎀</h2>
 
-  <label>NSC (Last 3 Months):</label>
-  <input type="number" id="nsc" placeholder="Enter NSC">
+    <div class="row">
+      <label>NSC (Last 3 Months):</label>
+      <input type="number" id="nsc" placeholder="Enter NSC">
+    </div>
 
-  <label>AC (This Month):</label>
-  <input type="number" id="ac" placeholder="Enter AC">
+    <div class="row">
+      <label>AC (This Month):</label>
+      <input type="number" id="ac" placeholder="Enter AC">
+    </div>
 
-  <label>Lives (Last Month):</label>
-  <input type="number" id="lives" placeholder="Enter Lives">
+    <div class="row">
+      <label>Lives (Last Month):</label>
+      <input type="number" id="lives" placeholder="Enter Lives">
+    </div>
 
-  <label>Persistency Type:</label>
-  <div>
-    <input type="radio" name="persistency" value="w/o13" checked> w/o 13th month
-    <input type="radio" name="persistency" value="with13"> with 13th month
-    <input type="radio" name="persistency" value="25th80"> 25th month (80%)
-    <input type="radio" name="persistency" value="25th90"> 25th month (90%)
+    <div class="row">
+      <label>Persistency:</label>
+      <div class="checkboxes">
+        <label><input type="radio" name="persistency" value="w/o13" checked> w/o 13th month</label>
+        <label><input type="radio" name="persistency" value="with13"> with 13th month</label>
+        <label><input type="radio" name="persistency" value="25th80"> 25th month (80%)</label>
+        <label><input type="radio" name="persistency" value="25th90"> 25th month (90%)</label>
+      </div>
+    </div>
+
+    <button onclick="calculateBonus()">✨ Compute Bonus ✨</button>
+
+    <div class="result" id="result"></div>
   </div>
-
-  <button onclick="calculateBonus()">Compute Bonus</button>
-
-  <div class="result" id="result"></div>
 
   <script>
     function getTableAPercentage(nsc, persistency) {
@@ -74,7 +139,7 @@
       const bonus = ac * (totalPct / 100);
 
       document.getElementById('result').innerHTML =
-        `Table A: ${tableA}%<br>Table B: ${tableB}%<br>Total Bonus: ${totalPct}%<br><br>Bonus Amount: ₱${bonus.toFixed(2)}`;
+        `🌸 Table A: ${tableA}%<br>🌸 Table B: ${tableB}%<br>🌸 Total Bonus: ${totalPct}%<br><br>💖 Bonus Amount: ₱${bonus.toFixed(2)}`;
     }
   </script>
 </body>
