@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>P.L.A.N. Bonus Calculator</title>
+  <style>
+    body { font-family: Arial; margin: 40px; background: #f9f9f9; }
+    h2 { color: #333; }
+    label { display: block; margin-top: 10px; }
+    input, select { padding: 5px; margin-top: 5px; width: 200px; }
+    button { margin-top: 20px; padding: 10px 20px; }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>P.L.A.N. Bonus Calculator</h2>
+
+  <label>NSC (Last 3 Months):</label>
+  <input type="number" id="nsc" placeholder="Enter NSC">
+
+  <label>AC (This Month):</label>
+  <input type="number" id="ac" placeholder="Enter AC">
+
+  <label>Lives (Last Month):</label>
+  <input type="number" id="lives" placeholder="Enter Lives">
+
+  <label>Persistency Type:</label>
+  <div>
+    <input type="radio" name="persistency" value="w/o13" checked> w/o 13th month
+    <input type="radio" name="persistency" value="with13"> with 13th month
+    <input type="radio" name="persistency" value="25th80"> 25th month (80%)
+    <input type="radio" name="persistency" value="25th90"> 25th month (90%)
+  </div>
+
+  <button onclick="calculateBonus()">Compute Bonus</button>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function getTableAPercentage(nsc, persistency) {
+      let pct = 0;
+      if (nsc >= 500000) {
+        pct = { 'w/o13': 30, 'with13': 35, '25th80': 40, '25th90': 50 }[persistency];
+      } else if (nsc >= 300000) {
+        pct = { 'w/o13': 23, 'with13': 27, '25th80': 30, '25th90': 40 }[persistency];
+      } else if (nsc >= 200000) {
+        pct = { 'w/o13': 18, 'with13': 21, '25th80': 24, '25th90': 32 }[persistency];
+      } else if (nsc >= 100000) {
+        pct = { 'w/o13': 14, 'with13': 17, '25th80': 20, '25th90': 26 }[persistency];
+      } else if (nsc >= 50000) {
+        pct = { 'w/o13': 12, 'with13': 15, '25th80': 18, '25th90': 23 }[persistency];
+      }
+      return pct;
+    }
+
+    function getTableBPercentage(nsc, lives) {
+      if (nsc < 50000) return 0;
+      if (lives >= 9) return 20;
+      if (lives >= 7) return 14;
+      if (lives >= 5) return 9;
+      if (lives >= 3) return 5;
+      return 0;
+    }
+
+    function calculateBonus() {
+      const nsc = parseFloat(document.getElementById('nsc').value);
+      const ac = parseFloat(document.getElementById('ac').value);
+      const lives = parseInt(document.getElementById('lives').value);
+      const persistency = document.querySelector('input[name="persistency"]:checked').value;
+
+      const tableA = getTableAPercentage(nsc, persistency);
+      const tableB = getTableBPercentage(nsc, lives);
+      const totalPct = tableA + tableB;
+      const bonus = ac * (totalPct / 100);
+
+      document.getElementById('result').innerHTML =
+        `Table A: ${tableA}%<br>Table B: ${tableB}%<br>Total Bonus: ${totalPct}%<br><br>Bonus Amount: ₱${bonus.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
