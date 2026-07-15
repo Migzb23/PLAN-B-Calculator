@@ -6,21 +6,22 @@
   <style>
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #fff0f5;
+      background: #fffbea;
       margin: 40px;
-      color: #333;
+      color: #444;
     }
     h2 {
-      color: #ff69b4;
+      color: #f4b400;
       text-align: center;
     }
     .container {
       max-width: 500px;
       margin: auto;
-      background: #ffffff;
+      background: #fffef5;
       padding: 20px;
       border-radius: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 3px solid #ffe066;
     }
     .row {
       display: flex;
@@ -34,8 +35,9 @@
     input[type="number"] {
       flex: 1;
       padding: 8px;
-      border: 2px solid #ffb6c1;
+      border: 2px solid #ffd43b;
       border-radius: 8px;
+      background: #fff9db;
     }
     .checkboxes {
       display: flex;
@@ -44,12 +46,15 @@
     }
     .checkboxes label {
       margin: 5px 0;
+      background: #fff3bf;
+      padding: 5px;
+      border-radius: 6px;
     }
     button {
       margin-top: 20px;
       width: 100%;
       padding: 12px;
-      background: #ff69b4;
+      background: #f4b400;
       color: white;
       border: none;
       border-radius: 10px;
@@ -57,19 +62,20 @@
       cursor: pointer;
     }
     button:hover {
-      background: #ff85c1;
+      background: #ffd43b;
+      color: #333;
     }
     .result {
       margin-top: 20px;
       font-weight: bold;
       text-align: center;
-      color: #d63384;
+      color: #e67700;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>🎀 P.L.A.N. Bonus Calculator 🎀</h2>
+    <h2>🌞 P.L.A.N. Bonus Calculator 🌞</h2>
 
     <div class="row">
       <label>NSC (Last 3 Months):</label>
@@ -139,7 +145,7 @@
       const bonus = ac * (totalPct / 100);
 
       document.getElementById('result').innerHTML =
-        `🌸 Table A: ${tableA}%<br>🌸 Table B: ${tableB}%<br>🌸 Total Bonus: ${totalPct}%<br><br>💖 Bonus Amount: ₱${bonus.toFixed(2)}`;
+        `🍯 Table A: ${tableA}%<br>🍯 Table B: ${tableB}%<br>🍯 Total Bonus: ${totalPct}%<br><br>🌻 Bonus Amount: ₱${bonus.toFixed(2)}`;
     }
   </script>
 </body>
